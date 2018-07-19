@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Predicting Customer Spend with Cloudera Data Science Workbench</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="main">
+				<form method="POST" action="predictSpend.php" target="_self">
+ 					<h2>Calling a REST API in CDSW to Predict Customer Spend</h2>
+					<h3>Enter Customer Information Below:</h3><br>
+<table>
+            <tr>
+                <th>Customer Attribute</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Age</th><th><input type="text" name="age" id="age" value="21"></th>
+            </tr>
+            <tr>
+                <td>Sex</th><th><input type="text" name="sex" id="sex" value="m"></th>
+            </tr>
+            <tr>
+                <td>Income</th><th><input type="text" name="income" id="income" value="50000"></th>
+            </tr>
+            <tr>
+                <td>State Lived In</th><th><input type="text" name="state" id="state" value="Colorado"></th>
+            </tr>
+            <tr>
+                <td>Household Size</th><th><input type="text" name="hh_members" id="hh_members" value="2"></th>
+            </tr>
+            <tr>
+                <td>Services Purchased</th><th><input type="text" name="services" id="services" value="2"></th>
+            </tr>
+            <tr>
+                <td>Monthly Data Usage (Bytes)</th><th><input type="text" name="usage" value="300000000"></th>
+            </tr>
+        </table><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="response">
+</div>
+	</body>
+</html>
