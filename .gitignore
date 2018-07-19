@@ -1,0 +1,13 @@
+R
+node_modules
+*.pyc
+.*
+!.gitignore
+.bash_history
+.cache/
+.config/
+.ipython/
+.ivy2/
+.local/
+.oracle_jre_usage/
+.viminfo

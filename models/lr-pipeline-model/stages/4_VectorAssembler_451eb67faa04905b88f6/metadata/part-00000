@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.VectorAssembler","timestamp":1532037753188,"sparkVersion":"2.2.0.cloudera1","uid":"VectorAssembler_451eb67faa04905b88f6","paramMap":{"inputCols":["age","income","avg_monthly_data","sex_vector","state_vector","hh_members","services"],"outputCol":"features"}}
