@@ -12,10 +12,9 @@ from pyspark.sql import functions as F
 from math import log
 
 # ### Configuration Settings
-kuduMaster = '10.0.0.25'
+kuduMaster = 'cdsw-demo-4.vpc.cloudera.com'
 churnThreshold = 0.5
 trainingDataSizeM = 1
-trainingDataPath = 's3a://sgupta-s3/network_data/training_data'
 churnFactors = {
   'state':0.08,
   'age':0.07,

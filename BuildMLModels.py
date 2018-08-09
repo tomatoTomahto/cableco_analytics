@@ -17,7 +17,7 @@ from math import log
 import seaborn as sb, pandas as pd, sys, cdsw
 
 # ### Configuration Settings
-kuduMaster = '10.0.0.25'
+kuduMaster = 'cdsw-demo-4.vpc.cloudera.com'
 pd.options.display.html.table_schema = True
 sample_size = 0.01
 maxIter=10
@@ -113,6 +113,7 @@ lrPipelineModel = lrPipeline.fit(trainingData)
 # ### Evaluate Model
 lrPipelineModel.write().overwrite().save("lr-pipeline-model")
 !hdfs dfs -get lr-pipeline-model models/
+!tar -czvf models/lr-pipeline-model.tar.gz models/lr-pipeline-model
 
 lrModel = lrPipelineModel.stages[6]
 trainingSummary = lrModel.summary
@@ -121,7 +122,7 @@ print("r2: %f" % trainingSummary.r2)
 if experimentType == 'lr':
   cdsw.track_metric('RMSE',trainingSummary.rootMeanSquaredError)
   cdsw.track_metric('r-squared',trainingSummary.r2)
-  cdsw.track_file("/home/cdsw/models/lr-pipeline-model")
+  cdsw.track_file("/home/cdsw/models/lr-pipeline-model.tar.gz")
   
 # ### Visualize Predictions and Residuals
 predictions = lrPipelineModel.transform(testData)\
@@ -170,6 +171,7 @@ rfPipelineModel = rfPipeline.fit(trainingData)
 # ### Evaluate Model and Feature Importances
 rfPipelineModel.write().overwrite().save("rf-pipeline-model")
 !hdfs dfs -get rf-pipeline-model models/
+!tar -czvf models/rf-pipeline-model.tar.gz models/rf-pipeline-model
 
 predictions = rfPipelineModel.transform(testData)
 predictions.select("prediction", label, "features").show(5)
@@ -180,7 +182,7 @@ accuracy = evaluator.evaluate(predictions)
 print("Test Error = %g" % (1.0 - accuracy))
 if experimentType == 'rf':
   cdsw.track_metric('Accuracy',accuracy)
-  cdsw.track_file("/home/cdsw/models/rf-pipeline-model")
+  cdsw.track_file("/home/cdsw/models/rf-pipeline-model.tar.gz")
 
 featureImportances = pd.DataFrame({'feature': features,
                                    'importance': rfPipelineModel.stages[3].featureImportances.toArray()})\

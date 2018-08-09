@@ -6,7 +6,7 @@ import kudu, time, random
 
 fake = Faker()
 
-kuduClient = kudu.connect(host='10.0.0.25', port=7051)
+kuduClient = kudu.connect(host='cdsw-demo-4.vpc.cloudera.com', port=7051)
 kuduSession = kuduClient.new_session()
 kuduTable = kuduClient.table('impala::network.customers')
 
